@@ -20,7 +20,7 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('http://172.104.40.247:3000/message' + token, body, {headers: headers})
+        return this.http.post('https://ng-deploy-jn.herokuapp.com/message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const message = new Message(
@@ -38,7 +38,7 @@ export class MessageService {
     }
 
     getMessages() {
-        return this.http.get('http://172.104.40.247:3000/message')
+        return this.http.get('https://ng-deploy-jn.herokuapp.com/message')
             .map((response: Response) => {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -69,7 +69,7 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch('http://172.104.40.247:3000/message/' + message.messageId + token, body, {headers: headers})
+        return this.http.patch('https://ng-deploy-jn.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -82,7 +82,7 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('http://172.104.40.247:3000/message/' + message.messageId + token)
+        return this.http.delete('https://ng-deploy-jn.herokuapp.com/message/' + message.messageId + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
